@@ -1,0 +1,677 @@
+diff --git a/source/dev-www/process/pages/definitions/fusion/loans/individual/customer/Enrolment.js b/source/dev-www/process/pages/definitions/fusion/loans/individual/customer/Enrolment.js
+index 1e1a9e58f..9275704a9 100644
+--- a/source/dev-www/process/pages/definitions/fusion/loans/individual/customer/Enrolment.js
++++ b/source/dev-www/process/pages/definitions/fusion/loans/individual/customer/Enrolment.js
+@@ -373,6 +373,13 @@ define(['perdix/domain/model/customer/EnrolmentProcess', 'perdix/infra/api/Angul
+                     "ContactInformation.businessInCurrentAddressSince": {
+                         "required": true
+                     },
++                    "BankAccounts.customerBankAccounts.loadSummary": {
++                        "orderNo": 174
++                    },
++                    "BankAccounts.customerBankAccounts.bankSummary": {
++                        "required": true,
++                        "orderNo": 175
++                    },
+                     "BankAccounts.customerBankAccounts.bankStatements.noOfChequeBounced": {
+                         "required": true
+                     },
+@@ -1864,6 +1871,632 @@ define(['perdix/domain/model/customer/EnrolmentProcess', 'perdix/infra/api/Angul
+                                             }
+                                         }
+                                     },
++                                    "loadSummary":{
++                                        "type":"section",
++                                        "html":textValue,
++                                        "condition":"model.loadSummaryCondition==true"
++                                    },
++                                    "bankSummary": {
++                                        "type":"button",
++                                        "title":"SUMMARY",
++                                        "onClick":function(model){
++                                            model.loadSummaryCondition = true;
++                                            var resp = {
++                                                "bank_account": {
++                                                    "accountName": "STALIN GINO S",
++                                                    "accountNumber": "11206316250",
++                                                    "bankName": "SBI",
++                                                    "accountType": "SAVING",
++                                                    "IFSC": "SBIN0000999",
++                                                    "statementUpload": "12-Apr-2018 to 25-Dec-2019",
++                                                    "mobile": "",
++                                                    "email": "",
++                                                    "pan": ""
++                                                },
++                                                "summary": {
++                                                    "monthlyAvgBal": {
++                                                        "average": 6704.58,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 0,
++                                                            "value": 31014.87
++                                                        }, {
++                                                            "monthYear": "May 2018",
++                                                            "total": 0,
++                                                            "value": 5957.39
++                                                        }, {
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 0,
++                                                            "value": 6850.39
++                                                        }, {
++                                                            "monthYear": "Aug 2018",
++                                                            "total": 0,
++                                                            "value": 5238.03
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 0,
++                                                            "value": 4244.63
++                                                        }, {
++                                                            "monthYear": "Oct 2018",
++                                                            "total": 0,
++                                                            "value": 4032.63
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 0,
++                                                            "value": 3901.93
++                                                        }, {
++                                                            "monthYear": "Feb 2019",
++                                                            "total": 0,
++                                                            "value": 3865.82
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 0,
++                                                            "value": 3788.98
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 0,
++                                                            "value": 3821.33
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 0,
++                                                            "value": 3855.33
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 0,
++                                                            "value": 3883.57
++                                                        }],
++                                                        "total": 0,
++                                                        "totalValue": 80454.90
++                                                    },
++                                                    "maxBalance": {
++                                                        "average": 12186.70,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 0,
++                                                            "value": 96796.55
++                                                        }, {
++                                                            "monthYear": "May 2018",
++                                                            "total": 0,
++                                                            "value": 6797.39
++                                                        }, {
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 0,
++                                                            "value": 7062.39
++                                                        }, {
++                                                            "monthYear": "Aug 2018",
++                                                            "total": 0,
++                                                            "value": 4234.63
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 0,
++                                                            "value": 4284.63
++                                                        }, {
++                                                            "monthYear": "Oct 2018",
++                                                            "total": 0,
++                                                            "value": 3894.03
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 0,
++                                                            "value": 3929.03
++                                                        }, {
++                                                            "monthYear": "Feb 2019",
++                                                            "total": 0,
++                                                            "value": 3781.53
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 0,
++                                                            "value": 3814.53
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 0,
++                                                            "value": 3848.53
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 0,
++                                                            "value": 3882.53
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 0,
++                                                            "value": 3914.53
++                                                        }],
++                                                        "total": 0,
++                                                        "totalValue": 146240.31
++                                                    },
++                                                    "minBalance": {
++                                                        "average": 4505.93,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 0,
++                                                            "value": 4627.39
++                                                        }, {
++                                                            "monthYear": "May 2018",
++                                                            "total": 0,
++                                                            "value": 6797.39
++                                                        }, {
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 0,
++                                                            "value": 7062.39
++                                                        }, {
++                                                            "monthYear": "Aug 2018",
++                                                            "total": 0,
++                                                            "value": 4234.63
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 0,
++                                                            "value": 4284.63
++                                                        }, {
++                                                            "monthYear": "Oct 2018",
++                                                            "total": 0,
++                                                            "value": 3894.03
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 0,
++                                                            "value": 3929.03
++                                                        }, {
++                                                            "monthYear": "Feb 2019",
++                                                            "total": 0,
++                                                            "value": 3781.53
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 0,
++                                                            "value": 3814.53
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 0,
++                                                            "value": 3848.53
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 0,
++                                                            "value": 3882.53
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 0,
++                                                            "value": 3914.53
++                                                        }],
++                                                        "total": 0,
++                                                        "totalValue": 54071.14
++                                                    },
++                                                    "cashDeposit": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "cashWithdrawals": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "chqDeposit": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "May 2018",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "chqIssues": {
++                                                        "average": 743.50,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Aug 2018",
++                                                            "total": 1,
++                                                            "value": 2827.00
++                                                        }, {
++                                                            "monthYear": "Oct 2018",
++                                                            "total": 0,
++                                                            "value": 0.00
++                                                        }, {
++                                                            "monthYear": "Feb 2019",
++                                                            "total": 1,
++                                                            "value": 147.00
++                                                        }],
++                                                        "total": 2,
++                                                        "totalValue": 2974.00
++                                                    },
++                                                    "credits": {
++                                                        "average": 1405.89,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 1,
++                                                            "value": 10000.00
++                                                        }, {
++                                                            "monthYear": "May 2018",
++                                                            "total": 1,
++                                                            "value": 2170.00
++                                                        }, {
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 1,
++                                                            "value": 265.00
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 1,
++                                                            "value": 50.00
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 1,
++                                                            "value": 35.00
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 1,
++                                                            "value": 33.00
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 1,
++                                                            "value": 34.00
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 1,
++                                                            "value": 34.00
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 1,
++                                                            "value": 32.00
++                                                        }],
++                                                        "total": 9,
++                                                        "totalValue": 12653.00
++                                                    },
++                                                    "debits": {
++                                                        "average": 23883.76,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 3,
++                                                            "value": 92169.16
++                                                        }, {
++                                                            "monthYear": "Aug 2018",
++                                                            "total": 1,
++                                                            "value": 2827.76
++                                                        }, {
++                                                            "monthYear": "Oct 2018",
++                                                            "total": 1,
++                                                            "value": 390.60
++                                                        }, {
++                                                            "monthYear": "Feb 2019",
++                                                            "total": 1,
++                                                            "value": 147.50
++                                                        }],
++                                                        "total": 6,
++                                                        "totalValue": 95535.03
++                                                    },
++                                                    "inwBounce": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "outwBounce": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "penaltyCharges": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "interestPaid": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "overdrawnPeriod": {
++                                                        "average": 8324.72,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 0,
++                                                            "value": 50452.81
++                                                        }, {
++                                                            "monthYear": "May 2018",
++                                                            "total": 0,
++                                                            "value": 6797.39
++                                                        }, {
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 0,
++                                                            "value": 7062.39
++                                                        }, {
++                                                            "monthYear": "Aug 2018",
++                                                            "total": 0,
++                                                            "value": 4234.63
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 0,
++                                                            "value": 4284.63
++                                                        }, {
++                                                            "monthYear": "Oct 2018",
++                                                            "total": 0,
++                                                            "value": 3894.03
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 0,
++                                                            "value": 3929.03
++                                                        }, {
++                                                            "monthYear": "Feb 2019",
++                                                            "total": 0,
++                                                            "value": 3781.53
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 0,
++                                                            "value": 3814.53
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 0,
++                                                            "value": 3848.53
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 0,
++                                                            "value": 3882.53
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 0,
++                                                            "value": 3914.53
++                                                        }],
++                                                        "total": 0,
++                                                        "totalValue": 99896.56
++                                                    },
++                                                    "ECS/NACH": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "peakUtilization": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "averageUtilizationOD_CC": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "totalNetDebit": {
++                                                        "average": 23883.17,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 2,
++                                                            "value": 92166.80
++                                                        }, {
++                                                            "monthYear": "Aug 2018",
++                                                            "total": 1,
++                                                            "value": 2827.76
++                                                        }, {
++                                                            "monthYear": "Oct 2018",
++                                                            "total": 1,
++                                                            "value": 390.60
++                                                        }, {
++                                                            "monthYear": "Feb 2019",
++                                                            "total": 1,
++                                                            "value": 147.50
++                                                        }],
++                                                        "total": 5,
++                                                        "totalValue": 95532.67
++                                                    },
++                                                    "totalNetCredit": {
++                                                        "average": 1405.89,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Apr 2018",
++                                                            "total": 1,
++                                                            "value": 10000.00
++                                                        }, {
++                                                            "monthYear": "May 2018",
++                                                            "total": 1,
++                                                            "value": 2170.00
++                                                        }, {
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 1,
++                                                            "value": 265.00
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 1,
++                                                            "value": 50.00
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 1,
++                                                            "value": 35.00
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 1,
++                                                            "value": 33.00
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 1,
++                                                            "value": 34.00
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 1,
++                                                            "value": 34.00
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 1,
++                                                            "value": 32.00
++                                                        }],
++                                                        "total": 9,
++                                                        "totalValue": 12653.00
++                                                    },
++                                                    "interestReceived": {
++                                                        "average": 69.00,
++                                                        "monthlyDetails": [{
++                                                            "monthYear": "Jun 2018",
++                                                            "total": 1,
++                                                            "value": 265.00
++                                                        }, {
++                                                            "monthYear": "Sep 2018",
++                                                            "total": 1,
++                                                            "value": 50.00
++                                                        }, {
++                                                            "monthYear": "Dec 2018",
++                                                            "total": 1,
++                                                            "value": 35.00
++                                                        }, {
++                                                            "monthYear": "Mar 2019",
++                                                            "total": 1,
++                                                            "value": 33.00
++                                                        }, {
++                                                            "monthYear": "Jun 2019",
++                                                            "total": 1,
++                                                            "value": 34.00
++                                                        }, {
++                                                            "monthYear": "Sep 2019",
++                                                            "total": 1,
++                                                            "value": 34.00
++                                                        }, {
++                                                            "monthYear": "Dec 2019",
++                                                            "total": 1,
++                                                            "value": 32.00
++                                                        }],
++                                                        "total": 7,
++                                                        "totalValue": 483.00
++                                                    },
++                                                    "selfWithdraw": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "selfDeposit": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "neftReturn": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "interestServiceDelay": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    },
++                                                    "loanRepayment": {
++                                                        "average": 0.00,
++                                                        "monthlyDetails": [],
++                                                        "total": 0,
++                                                        "totalValue": 0.00
++                                                    }
++                                                },
++                                                "missingMonths": ["Jul 2018", "Nov 2018", "Jan 2019", "Apr 2019", "May 2019", "Jul 2019", "Aug 2019", "Oct 2019", "Nov 2019"]
++                                            }
++                                            var formatResp = {}
++
++                                            for (var key in resp.summary){
++                                                if(resp.summary.hasOwnProperty(key)){
++                                                    for (var i=0;i< resp.summary[key]['monthlyDetails'].length;i++){
++                                                        if(!formatResp.hasOwnProperty(resp.summary[key]['monthlyDetails'][i]['monthYear'])){
++                                                            formatResp[resp.summary[key]['monthlyDetails'][i]['monthYear']] = {};
++                                                            formatResp[resp.summary[key]['monthlyDetails'][i]['monthYear']][key] = resp.summary[key]['monthlyDetails'][i]['value'];
++                                                        }
++                                                        else{
++                                                            formatResp[resp.summary[key]['monthlyDetails'][i]['monthYear']][key] = resp.summary[key]['monthlyDetails'][i]['value'];
++                                                        }
++                                                    }
++                                                }
++                                            }
++                                            var statementPhoto;
++                                            var date;
++                                            var array = [];
++                                            for(var i=0;i<model.customer.customerBankAccounts.length;i++)
++                                            {
++                                                var bankAccount = model.customer.customerBankAccounts[i];
++                                                for(var j=0;j<bankAccount.bankStatements.length;j++){
++                                                    statementPhoto = bankAccount.bankStatements[j].bankStatementPhoto;
++                                                    date = bankAccount.bankStatements[j].startMonth;
++                                                    model.customer.customerBankAccounts[i].bankStatements[j] = {};
++                                                    model.customer.customerBankAccounts[i].bankStatements[j] = {'bankStatementPhoto':statementPhoto} 
++                                                    model.customer.customerBankAccounts[i].bankStatements[j].startMonth = moment(date).format("MMM YYYY");
++                                                    array.push(model.customer.customerBankAccounts[i].bankStatements[j]); 
++                                                }
++                                                var index=0;
++                                                model.customer.customerBankAccounts[i].bankStatements = [];
++                                                for(var n=0;n<array.length;n++){
++                                                    if(formatResp.hasOwnProperty(array[n]['startMonth']))
++                                                        formatResp[array[n]['startMonth']].bankStatementPhoto = array[n]['bankStatementPhoto']
++                                                }
++                                                for (var key in formatResp){
++                                                    model.customer.customerBankAccounts[i].bankStatements.push({"startMonth":moment(key,"MMM YYYY").format("YYYY-MM")})
++                                                    if(formatResp[key].hasOwnProperty('cashDeposit')){
++                                                        model.customer.customerBankAccounts[i].bankStatements[index].cashDeposits = (formatResp[key]['cashDeposit']);
++                                                    }
++                                                    else{
++                                                        model.customer.customerBankAccounts[i].bankStatements[index].cashDeposits = 0;
++                                                    }
++                                                    if(formatResp[key].hasOwnProperty('chqDeposit')){
++                                                        model.customer.customerBankAccounts[i].bankStatements[index].nonCashDeposits = (formatResp[key]['chqDeposit']);
++                                                    }
++                                                    else{
++                                                        model.customer.customerBankAccounts[i].bankStatements[index].nonCashDeposits = 0;
++                                                    }
++                                                    model.customer.customerBankAccounts[i].bankStatements[index].totalDeposits = model.customer.customerBankAccounts[i].bankStatements[index].cashDeposits + model.customer.customerBankAccounts[i].bankStatements[index].nonCashDeposits 
++                                                    if(formatResp[key].hasOwnProperty('debits')){
++                                                        model.customer.customerBankAccounts[i].bankStatements[index].totalWithdrawals = (formatResp[key]['debits']);
++                                                    }
++                                                    else{
++                                                        model.customer.customerBankAccounts[i].bankStatements[index].totalWithdrawals = 0;
++                                                    }
++                                                    if(formatResp[key].hasOwnProperty('bankStatementPhoto')){
++                                                        model.customer.customerBankAccounts[i].bankStatements[index].bankStatementPhoto = formatResp[key]['bankStatementPhoto']
++                                                    }
++                                                        
++                                                    index = index+1;
++                                                        
++                                                }
++                                                //var cashDepositsArray = resp.summary.cashDeposit.monthlyDetails;
++                                                // var averageBankBalanceArray =  resp.summary.monthlyAvgBal.monthlyDetails;
++                                                // model.customer.customerBankAccounts[i].averageBankBalance = resp.summary.monthlyAvgBal.average; 
++                                                // averageBankBalanceArray.forEach(function (monthlyDetails){
++                                                //     model.customer.customerBankAccounts[i].bankStatements.push({"startMonth":moment(monthlyDetails.monthYear,"MMM YYYY").format("YYYY-MM")});
++                                                // })
++                                                //console.log(model.customer.customerBankAccounts[i].bankStatements);
++                                            }
++                                            model.loadSummaryCondition = false;    
++                                        }
++                                    },
+                                     "averageBankBalance":{
+                                         "type":"number",
+                                         "title":"AVARAGE_AMOUNT_BANK",
+@@ -2810,6 +3443,8 @@ define(['perdix/domain/model/customer/EnrolmentProcess', 'perdix/infra/api/Angul
+                     "BankAccounts.customerBankAccounts.bankStatements.noOfChequeBounced",
+                     "BankAccounts.customerBankAccounts.bankStatements.noOfEmiChequeBounced",
+                     "BankAccounts.customerBankAccounts.bankStatements.bankStatementPhoto",
++                    "BankAccounts.customerBankAccounts.loadSummary",
++                    "BankAccounts.customerBankAccounts.bankSummary",
+                     "BankAccounts.customerBankAccounts.isDisbersementAccount",
+ 
+                     "Liabilities",
+@@ -6924,6 +7559,7 @@ define(['perdix/domain/model/customer/EnrolmentProcess', 'perdix/infra/api/Angul
+                 }
+             }
+             };
++            var textValue = `<p align="center" style="color:red;"><b>Loading Summary...</b></p>`;
+             return {
+                 //"type": "child-tabs",
+                 "type":"schema-form",
+@@ -6939,7 +7575,7 @@ define(['perdix/domain/model/customer/EnrolmentProcess', 'perdix/infra/api/Angul
+                     model.loanCustomerRelationType = "Customer";
+                     model.currentStage = bundleModel.currentStage;
+                     /* End of setting data recieved from Bundle */
+-
++                    model.loadSummaryCondition = false;
+                     model.customer = model.enrolmentProcess.customer;
+                     if(model.customer.id){
+                         bundleModel.customers.push({pageInfo:model._bundlePageObj,customer: model.customer});
