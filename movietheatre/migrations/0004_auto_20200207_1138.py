@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterUniqueTogether(
             name='seat',
-            unique_together=set([('screen', 'row', 'seat_number')]),
+            unique_together={('screen', 'row', 'seat_number')},
         ),
     ]
